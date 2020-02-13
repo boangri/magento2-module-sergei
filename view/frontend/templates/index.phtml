@@ -1,0 +1,10 @@
+<?php
+/** @var \Boangri\Sergei\Block\Items $block */
+$viewModel = $block->getViewModel();
+?>
+<h1>Sergei Items:</h1>
+<?php foreach ($viewModel->getItems() as $item): ?>
+<p>
+<?php echo $item->getName(); ?>: <?php echo $item->getDescription(); ?>
+</p>
+<?php endforeach; ?>
