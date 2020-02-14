@@ -1,0 +1,23 @@
+{
+  "name": "boangri/magento2-module-sergei",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "homepage": "http://www.cyberhull.com",
+  "description": "Simple Tutorial Module",
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "authors": [
+    {
+      "name": "Boris Gribovskiy"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Boangri\\Sergei\\": ""
+    },
+    "files": [
+      "registration.php"
+    ]
+  }
+}
