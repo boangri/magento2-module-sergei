@@ -1,0 +1,17 @@
+{
+    "boangri_sergei_item": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "creation_time": true,
+            "is_active": true
+        },
+        "index": {
+            "BOANGRI_SERGEI_ITEM_DESCRIPTION": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
