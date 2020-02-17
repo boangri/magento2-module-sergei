@@ -25,7 +25,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <type name="Boangri\Sergei\Console\Command\AddItem">
+    <type name="Boangri\Sergei\Observer\ItemAddition">
         <arguments>
             <argument name="logger" xsi:type="object">SergeiLogger</argument>
         </arguments>

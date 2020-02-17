@@ -3,6 +3,7 @@
 namespace Boangri\Sergei\Console\Command;
 
 use Exception;
+use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -24,18 +25,22 @@ class AddItem extends Command
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var ManagerInterface
+     */
+    private $eventManager;
 
     /**
      * AddItem constructor.
      * @param ItemFactory $itemFactory
-     * @param LoggerInterface $logger
+     * @param ManagerInterface $eventManager
      */
     public function __construct(
         ItemFactory $itemFactory,
-        LoggerInterface $logger
+        ManagerInterface $eventManager
     ) {
         $this->itemFactory = $itemFactory;
-        $this->logger = $logger;
+        $this->eventManager = $eventManager;
         parent::__construct();
     }
 
@@ -67,7 +72,8 @@ class AddItem extends Command
         $item->setDescription($input->getArgument(self::INPUT_KEY_DESCRIPTION));
         try {
             $item->save();
-            $this->logger->debug('Item created!');
+            //$this->logger->debug('Item created!');
+            //$this->eventManager->dispatch('sergei_item_add_after', ['obj' => $item]);
             return Cli::RETURN_SUCCESS;
         } catch (Exception $e) {
             $this->logger->error('Item NOT created! ' . $e->getMessage());
