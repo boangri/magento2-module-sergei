@@ -3,6 +3,7 @@
 $viewModel = $block->getViewModel();
 ?>
 <h1>Sergei Items:</h1>
+<?php echo $block->getLabel() ?>
 <?php foreach ($viewModel->getItems() as $item): ?>
 <p>
 <?php echo $item->getName(); ?>: <?php echo $item->getDescription(); ?>

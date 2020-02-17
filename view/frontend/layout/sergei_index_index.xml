@@ -5,8 +5,10 @@
             <block name="sergei_items" template="Boangri_Sergei::index.phtml">
                 <arguments>
                     <argument name="view_model" xsi:type="object">Boangri\Sergei\ViewModel\Items</argument>
+                    <argument name="label" xsi:type="string">The Label</argument>
                 </arguments>
             </block>
         </referenceContainer>
+        <referenceBlock name="form.subscribe" remove="true" />
     </body>
 </page>
