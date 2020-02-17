@@ -3,6 +3,7 @@
 namespace Boangri\Sergei\Console\Command;
 
 use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,11 +16,26 @@ class AddItem extends Command
     const INPUT_KEY_NAME = 'name';
     const INPUT_KEY_DESCRIPTION = 'description';
 
+    /**
+     * @var ItemFactory
+     */
     private $itemFactory;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct(ItemFactory $itemFactory)
-    {
+    /**
+     * AddItem constructor.
+     * @param ItemFactory $itemFactory
+     * @param LoggerInterface $logger
+     */
+    public function __construct(
+        ItemFactory $itemFactory,
+        LoggerInterface $logger
+    ) {
         $this->itemFactory = $itemFactory;
+        $this->logger = $logger;
         parent::__construct();
     }
 
@@ -49,8 +65,14 @@ class AddItem extends Command
         $item = $this->itemFactory->create();
         $item->setName($input->getArgument(self::INPUT_KEY_NAME));
         $item->setDescription($input->getArgument(self::INPUT_KEY_DESCRIPTION));
-        $item->save();
-        return Cli::RETURN_SUCCESS;
+        try {
+            $item->save();
+            $this->logger->debug('Item created!');
+            return Cli::RETURN_SUCCESS;
+        } catch (Exception $e) {
+            $this->logger->error('Item NOT created! ' . $e->getMessage());
+            return Cli::RETURN_FAILURE;
+        }
     }
 }
 
