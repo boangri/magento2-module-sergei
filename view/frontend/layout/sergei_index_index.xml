@@ -9,6 +9,5 @@
                 </arguments>
             </block>
         </referenceContainer>
-        <referenceBlock name="form.subscribe" remove="true" />
     </body>
 </page>
