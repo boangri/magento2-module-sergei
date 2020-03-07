@@ -34,14 +34,18 @@ class AddItem extends Command
      * AddItem constructor.
      * @param ItemFactory $itemFactory
      * @param ManagerInterface $eventManager
+     * @param LoggerInterface $logger
      */
     public function __construct(
         ItemFactory $itemFactory,
-        ManagerInterface $eventManager
+        ManagerInterface $eventManager,
+        LoggerInterface $logger
     ) {
         $this->itemFactory = $itemFactory;
         $this->eventManager = $eventManager;
+        $this->logger = $logger;
         parent::__construct();
+        $logger->info("Constructor called");
     }
 
     protected function configure()

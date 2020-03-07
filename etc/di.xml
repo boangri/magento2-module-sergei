@@ -30,4 +30,9 @@
             <argument name="logger" xsi:type="object">SergeiLogger</argument>
         </arguments>
     </type>
+    <type name="Boangri\Sergei\Console\Command\AddItem">
+        <arguments>
+            <argument name="logger" xsi:type="object">SergeiLogger</argument>
+        </arguments>
+    </type>
 </config>
