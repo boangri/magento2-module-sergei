@@ -10,4 +10,12 @@ interface ItemRepositoryInterface
      * @return ItemInterface[]
      */
     public function getList();
+
+    /**
+     * Create or update an item.
+     *
+     * @param ItemInterface $item
+     * @return $this
+     */
+    public function save(ItemInterface $item);
 }

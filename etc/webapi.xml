@@ -6,4 +6,10 @@
             <resource ref="Boangri_Sergei::items"/>
         </resources>
     </route>
+    <route url="/V1/sergei_item_add" method="POST">
+        <service class="Boangri\Sergei\Api\ItemRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Boangri_Sergei::items"/>
+        </resources>
+    </route>
 </routes>

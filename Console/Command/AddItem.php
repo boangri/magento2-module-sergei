@@ -2,6 +2,8 @@
 
 namespace Boangri\Sergei\Console\Command;
 
+use Boangri\Sergei\Api\ItemRepositoryInterface;
+use Boangri\Sergei\Model\ItemRepository;
 use Exception;
 use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -29,23 +31,29 @@ class AddItem extends Command
      * @var ManagerInterface
      */
     private $eventManager;
+    /**
+     * @var ItemRepositoryInterface
+     */
+    private $itemRepository;
 
     /**
      * AddItem constructor.
      * @param ItemFactory $itemFactory
      * @param ManagerInterface $eventManager
+     * @param ItemRepositoryInterface $itemRepository
      * @param LoggerInterface $logger
      */
     public function __construct(
         ItemFactory $itemFactory,
         ManagerInterface $eventManager,
+        ItemRepositoryInterface $itemRepository,
         LoggerInterface $logger
     ) {
         $this->itemFactory = $itemFactory;
         $this->eventManager = $eventManager;
+        $this->itemRepository = $itemRepository;
         $this->logger = $logger;
         parent::__construct();
-        $logger->info("Constructor called");
     }
 
     protected function configure()
@@ -75,7 +83,7 @@ class AddItem extends Command
         $item->setName($input->getArgument(self::INPUT_KEY_NAME));
         $item->setDescription($input->getArgument(self::INPUT_KEY_DESCRIPTION));
         try {
-            $item->save();
+            $this->itemRepository->save($item);
             //$this->logger->debug('Item created!');
             //$this->eventManager->dispatch('sergei_item_add_after', ['obj' => $item]);
             return Cli::RETURN_SUCCESS;
@@ -85,4 +93,3 @@ class AddItem extends Command
         }
     }
 }
-
