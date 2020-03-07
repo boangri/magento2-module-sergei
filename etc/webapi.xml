@@ -3,7 +3,7 @@
     <route url="/V1/sergei_items" method="GET">
         <service class="Boangri\Sergei\Api\ItemRepositoryInterface" method="getList"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="Boangri_Sergei::items"/>
         </resources>
     </route>
 </routes>
